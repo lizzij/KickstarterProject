@@ -1,0 +1,56 @@
+---
+title: "KickStarterProject"
+author: "(Eliza) Zijin Huang"
+date: "4/7/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(stringr)
+library(anytime)
+library(lubridate)
+```
+
+## Load data
+```{r clean}
+raw_data <- read.csv(file="../data/Kickstarter.csv", header=TRUE, sep=",")
+```
+
+## Cleaning
+```{r clean}
+# To clean the "catagory" column
+raw_data$category <- raw_data$category %>%
+  str_extract("name\":\".+\",\"") %>%
+  str_replace("\",\".+", "") %>%
+  str_replace_all("name\":\"", "")
+
+# To clean the "location" column
+raw_data$location <- raw_data$location %>%
+  str_extract("name\":\".+\",\"") %>%
+  str_replace("\",\".+", "") %>%
+  str_replace_all("name\":\"", "")
+
+# To get rid of creator column
+raw_data$creator <- NULL
+
+# To get rid of photo column
+raw_data$photo <- NULL
+
+# To get rid of slug column
+raw_data$slug <- NULL
+
+# To get rid of url column
+raw_data$urls <- NULL
+
+# To add a preparation_duration column
+raw_data$preparation_duration <- raw_data$launched_at - raw_data$created_at
+
+# To add a launch_duration column
+raw_data$launch_duration <- raw_data$deadline - raw_data$launched_at
+
+# To convert epoch seconds to readable time
+raw_data$created_at_readable <- anytime(raw_data$created_at)
+raw_data$deadline_readable <- anytime(raw_data$deadline)
+raw_data$launched_at_readable <- anytime(raw_data$launched_at)
+```
