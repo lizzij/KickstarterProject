@@ -45,9 +45,11 @@ raw_data$urls <- NULL
 
 # To add a preparation_duration column
 raw_data$preparation_duration <- raw_data$launched_at - raw_data$created_at
+raw_data$preparation_duration_r <- seconds_to_period(raw_data$preparation_duration)
 
 # To add a launch_duration column
 raw_data$launch_duration <- raw_data$deadline - raw_data$launched_at
+raw_data$launch_duration_r <- seconds_to_period(raw_data$launch_duration)
 
 # To convert epoch seconds to readable time
 raw_data$created_at_readable <- anytime(raw_data$created_at)
