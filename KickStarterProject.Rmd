@@ -14,7 +14,7 @@ library(lubridate)
 
 ## Load data
 ```{r clean}
-raw_data <- read.csv(file="../data/Kickstarter.csv", header=TRUE, sep=",")
+raw_data <- read.csv(file="./data/Kickstarter.csv", header=TRUE, sep=",")
 ```
 
 ## Cleaning
@@ -53,4 +53,9 @@ raw_data$launch_duration <- raw_data$deadline - raw_data$launched_at
 raw_data$created_at_readable <- anytime(raw_data$created_at)
 raw_data$deadline_readable <- anytime(raw_data$deadline)
 raw_data$launched_at_readable <- anytime(raw_data$launched_at)
+```
+
+```{r}
+data <- raw_data
+write.csv(data, "./data/data.csv")
 ```
