@@ -8,5 +8,6 @@ Kickstarter data [here](https://s3.amazonaws.com/weruns/forfun/Kickstarter/Kicks
 
 ## Presentation
 Presentation slides [here](https://docs.google.com/presentation/d/18f86NWtvTwi5VQZi7DQhDRkr-cygRJI8cHUcKotJqYQ/edit?usp=sharing)
+Editable [here](https://docs.google.com/presentation/d/18f86NWtvTwi5VQZi7DQhDRkr-cygRJI8cHUcKotJqYQ/edit?usp=sharing)
 
 ## Report
