@@ -8,6 +8,27 @@ output:
     df_print: paged
 ---
 
+# Part I. Report
+
+## Summary and Problem Statement
+A description of the problem that is driving the project (comprehensible by  an educated lay person).
+
+## Data
+A rationale for selecting the data collected used to investigate the problem.
+
+## Cleaning, Visualization, and Prediction
+Justification for the processes implemented, and the technical choices you made for your project.
+
+## Issues and Solution
+A description of any issues you ran into and how you resolved them. 
+Input and output results from your R chunks. If the report is not derived from your .rmd file it must contain an example session of your R code and insightful screenshots of the project running. 
+
+## Insigths and Potential Future Work
+Insights on what you learned and potential future work.
+
+
+# Part II. Data Cleaning and Visualization
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(dplyr)
