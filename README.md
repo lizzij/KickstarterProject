@@ -12,7 +12,7 @@ Using R. Please refer to [Part II. Data Cleaning and Visualization.Rmd](https://
 Using kNN, logistic regression, SVM, NB models. Please refer to [Part III. Data Model Construction and Prediction.ipynb](https://github.com/lizzij/KickstarterProject/blob/master/Part%20III.%20Data%20Model%20Construction%20and%20Prediction.ipynb)
 
 ## Presentation
-Presentation slides [here](https://docs.google.com/presentation/d/18f86NWtvTwi5VQZi7DQhDRkr-cygRJI8cHUcKotJqYQ/edit?usp=sharing)   
+Presentation slides [view here](https://docs.google.com/presentation/d/18f86NWtvTwi5VQZi7DQhDRkr-cygRJI8cHUcKotJqYQ/edit?usp=sharing).   
 
 ## Report
 <object data="https://github.com/lizzij/KickstarterProject/blob/master/KickstarterProjectReport.pdf" type="application/pdf" width="700px" height="700px">
