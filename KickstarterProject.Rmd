@@ -1,5 +1,5 @@
 ---
-title: "KickStarterProject"
+title: "KickStarter Project"
 author: "(Eliza) Zijin Huang, Tian Xia"
 date: "4/17/2019"
 output:
@@ -11,21 +11,54 @@ output:
 # Part I. Report
 
 ## Summary and Problem Statement
-A description of the problem that is driving the project (comprehensible by  an educated lay person).
+*A description of the problem that is driving the project (comprehensible by  an educated lay person).*
+
+In this project, we are predicting the success rate of Kickstarter campaigns. Kickstarter is the world's largest funding platform for creative projects, with projects ranging from technology to arts. Kickstarter’s rule states that if a project falls short of meeting its minimum funding goal by its deadline, the project will not receive any fund. Thus very important to set a realistic goal. However, there is currently no practical suggestion or guidance, and the analytics dashboard is hard to set up. Therefore, we are interested in predicting the projects’ success rate given a project’s goal and other independent variables. Predicting the success rate increases the number of funding goals reached. Ultimately, it supports the entrepreneurs, and in the process support art, advocate for social causes, and bring innovation ideas and products to the world.
 
 ## Data
-A rationale for selecting the data collected used to investigate the problem.
+*A rationale for selecting the data collected used to investigate the problem.*
+
+The dataset we used is pre-scraped data stored in multiple csv files. It includes 7,574 projects from North America, Europe, Pacific countries, and Japan. Each project in our dataset has either failed, successful, live, suspended or canceled status. Since we are only interested in projects with status of either successful or failed, we filtered out projects whose status is not successful or failed. In addition we also dropped projects that have missing values.
+
+Our selected dataset is complete and good for us to analyze the data and construct data predictive models. We payed attention to some specific parameters that are important for our analysis such as projects’ goal, amount pledged, category, duration, region, etc. All those features are included, even though the data might be untidy or not in the best format for analysis. However, some unrelated parameters such as projects’ description, urls, photo have nothing to do with success rate. Thus, we drop those columns and leave parameters that are closely related with project’s success.
 
 ## Cleaning, Visualization, and Prediction
-Justification for the processes implemented, and the technical choices you made for your project.
+*Justification for the processes implemented, and the technical choices you made for your project.*
+
+For data cleaning, we chose to use tidyverse, lubridate packages with regular expression and some baseR functions. In order to extract useful information and get rid of irrelevant data, we used regular expression to extract category, location and tidy other parameters into standard format. Also we used lubridate package to create duration columns based on given information about launched date and end date. 
+
+In the process of data exploration and visualization analysis, we chose to use ggthemes and rworldmap packages for visualizing the data and dplyr packages to select relevant data. Ggthemes can help us make data more visualized in terms of colors of bars, lines, and points. For example, the higher proportion the category takes or the higher the success rate is, the darker the color of that category is. We also used rworldmap package because we want to present and acknowledge where our data is coming from. It is relatively wide-ranged, even though it does not cover Africa and South America. 
+
+For prediction, we used the following models: k-nearest neighbour, logistic regression, support vector machine, and naive bayes. K-nn model is commonly used in classification and regression predictive problems, but has a long calculation time. Simple logistic regression model is used because there are multiple independent variables. SVM is used for classification because if can find an optimal boundary between the classes. NB model takes less time to train, and requires less data. Thus, we choose to implement the above four models for our prediction/classification task.
 
 ## Issues and Solution
-A description of any issues you ran into and how you resolved them. 
-Input and output results from your R chunks. If the report is not derived from your .rmd file it must contain an example session of your R code and insightful screenshots of the project running. 
+*A description of any issues you ran into and how you resolved them. *
+
+When we clean the dataset, one challenge we had is that some of columns’ data are stored in JSON format and they actually compress a lot of relevant data. The approach we took to solve this problem is by using string extract and replace with regular expression to extract useful information and split them into several columns. In addition, the original data does not have the duration in format of number of days, instead we had launched date and end date, both in Unix time. We used r packages to convert them into readable year/month/day format, and computed two duration variables with the three given timestamp.
+
+In the prediction process, we encounter the following problems: 
+
+First, the data frame contains a mix of independent variables and dependent variables. To solve this problem, we implemented a correlation plot of all the variables, and dropped those that are in fact dependent variables. For instance, we dropped “spotlight” (meaning if a Kickstarter project is featured on the homepage of the website), because it is highly correlated with the final state (successful or unsuccessful), and is in fact a dependent variable.
+
+Second, some models (SVM) takes has a long calculation time in R. As a result, we choose to implement the models in python using jupyter notebook for shorter time and more suitable visualization tools (such as Matlibplot).
+
+
+*Please refer to Part II and Part III of this report for input code and session outputs.*
 
 ## Insigths and Potential Future Work
-Insights on what you learned and potential future work.
+*Insights on what you learned and potential future work.*
 
+Throughout this project, We have learned some things that we do not learn in lectures or homeworks. First, it is our first time to play around with such huge, untidy, and real data. We had some challenges for cleaning data but solved them eventually (refer to the issue section for more details). We realized that a fairly confident prediction can be generated based on our chosen variables. Thus, it is possible to predict the success, and potentially make modification to the project setup, in order to improve the success rate of Kickstarter crowdfunding projects.
+
+In future, we are planning to do a multi-class/multinomial classification or prediction, instead of the binary classification process we are using. This would give more precise feedbacks to the project initiators. 
+
+We are also considering building interactive visualization tools (possibly chrome extension) to analyze a specific project’s parameters, and give real-time feedback to the project initiators. The feedback could focus on variables such as project duration, pledged amount, areas of improvement on project description etc. Some examples of the suggestions are:
+“Use a longer time period of 100 days.”
+“Reduce the pledged amount to 1000 dollars.”
+“Replace the word ‘must’ with ‘could’.”
+“Set more pledging options with smaller amounts, such as $5.”
+
+*** 
 # Part II. Data Cleaning and Visualization
 
 ```{r setup, include=FALSE}
@@ -41,8 +74,8 @@ library(rworldmap)
 #1.
 **Data Acquisition and Integration
 ```{r}
-data_source_1 <- read.csv("Kickstarter001.csv", header = TRUE, sep = ",")
-data_source_2 <- read.csv("Kickstarter002.csv", header = TRUE, sep = ",")
+data_source_1 <- read.csv("./data/Kickstarter001.csv", header = TRUE, sep = ",")
+data_source_2 <- read.csv("./data/Kickstarter002.csv", header = TRUE, sep = ",")
 
 raw_data <- rbind(data_source_1, data_source_2)
 ```
@@ -250,10 +283,3 @@ mapCountryData(countries.match, nameColumnToPlot="count",
                mapTitle="Number of Projects by Country", catMethod="logFixedWidth", 
                colourPalette="heat")
 ```
-
-
-
-
-
-
-
