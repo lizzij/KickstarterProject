@@ -26,7 +26,6 @@ Input and output results from your R chunks. If the report is not derived from y
 ## Insigths and Potential Future Work
 Insights on what you learned and potential future work.
 
-
 # Part II. Data Cleaning and Visualization
 
 ```{r setup, include=FALSE}
