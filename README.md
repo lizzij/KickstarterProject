@@ -2,13 +2,14 @@
 Predicting success rate of Kickstarter crowdfunding projects.
 
 ## Data
-Kickstarter data [here](https://s3.amazonaws.com/weruns/forfun/Kickstarter/Kickstarter_2019-03-14T03_20_12_200Z.zip)
+Please refer to the 
+Kickstarter data [source](https://s3.amazonaws.com/weruns/forfun/Kickstarter/Kickstarter_2019-03-14T03_20_12_200Z.zip)
 
 ## Cleaning
-Using R.
+Using R. Please refer to [Part II. Data Cleaning and Visualization.Rmd](https://github.com/lizzij/KickstarterProject/blob/master/Part%20II.%20Data%20Cleaning%20and%20Visualization.Rmd)
 
 ## Analysis
-Using kNN, logistic regression, SVM, NB models.
+Using kNN, logistic regression, SVM, NB models. Please refer to [Part III. Data Model Construction and Prediction.ipynb](https://github.com/lizzij/KickstarterProject/blob/master/Part%20III.%20Data%20Model%20Construction%20and%20Prediction.ipynb)
 
 ## Presentation
 Presentation slides [here](https://docs.google.com/presentation/d/18f86NWtvTwi5VQZi7DQhDRkr-cygRJI8cHUcKotJqYQ/edit?usp=sharing)   
